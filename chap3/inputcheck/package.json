@@ -1,0 +1,15 @@
+{
+  "name": "inputcheck",
+  "version": "1.0.0",
+  "description": "Looks for and implements commands from input",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js" 
+  },
+  "keywords": [
+    "command",
+    "check"
+  ],
+  "author": "Shelley Powers",
+  "license": "ISC"
+}
