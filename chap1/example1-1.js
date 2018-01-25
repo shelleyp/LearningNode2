@@ -6,8 +6,8 @@ http.createServer(function (req, res) {
 
    if (name === undefined) name = 'world';
 
-   if (name == 'burningbird') {
-      var file = 'phoenix5a.png';
+   if (name === 'burningbird') {
+      var file = '../images/phoenix5a.png';
       fs.stat(file, function (err, stat) {
          if (err) {
             console.error(err);
@@ -26,4 +26,4 @@ http.createServer(function (req, res) {
    }
 }).listen(8124);
 
-console.log('Server running at port 8124/');
+console.log('Server running at port 8124');
