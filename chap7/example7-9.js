@@ -21,7 +21,7 @@ var hashpassword = crypto.createHash('sha512')
                    .digest('hex');
 // create user record
 connection.query('INSERT INTO user ' +
-   'SET username = ?, passwordhash = ?, salt = ?
+   'SET username = ?, passwordhash = ?, salt = ?',
    [username, hashpassword, salt], function(err, result) {
       if (err) console.error(err);
       connection.end();
