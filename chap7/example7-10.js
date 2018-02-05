@@ -11,7 +11,7 @@ connection.query('USE nodedatabase');
 var username = process.argv[2];
 var password = process.argv[3];
 
-connection.query('SELECT password, salt FROM user WHERE username = ?',
+connection.query('SELECT passwordhash, salt FROM user WHERE username = ?',
    [username], function(err, result, fields) {
    if (err) return console.error(err);
 
@@ -19,7 +19,7 @@ connection.query('SELECT password, salt FROM user WHERE username = ?',
                  .update(result[0].salt + password, 'utf8')
                  .digest('hex');
 
-   if (result[0].password === newhash) {
+   if (result[0].passwordhash === newhash) {
       console.log("OK, you're cool");
    } else {
       console.log("Your password is wrong. Try again.");
