@@ -4,7 +4,7 @@ fs.readFile('./apples.txt','utf8', function(err,data) {
       console.error(err);
    } else {
 
-     var adjData = data.replace(/apple/g,'orange');
+     var adjData = data.replace(/[A|a]pple/g,'orange');
 
      fs.writeFile('./oranges.txt', adjData, function(err) {
 
