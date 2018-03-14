@@ -1,14 +1,22 @@
-# Updates
+# Learning Node 2nd edition 
 
 ## Updates to examples for upcoming Node.js 10 release
+
+### Chapter 2
 
 The examples for Chapter 2 of Learning Node 2nd edition work with both the latest LTS as well as Current (9.x). They should continue working the same with the upcoming Node 10 LTS release. However, there is one fairly significant caveat:
 
 The use of the Buffer constructor ( new Buffer()) will now generate a runtime deprecation warning. 
 
-The Buffer constructor has been deprecated since versions 5/6, as I note in the book. However, with previous Node versions, Buffer constructor is deprecated in the documentation. With Node 10, the use of Buffer constructor will now generate a runtime warning. 
+The Buffer constructor has been deprecated since versions 5/6, as I note in the book. However, with previous Node versions, Buffer constructor is deprecated in the documentation. The only time the warning showed up in the application space is if you use the --pending-deprecation flag. Then you get the following runtime warning:
 
-The applications should still run the same, but I created new copies of the example files that used the Buffer constructor and replaced it with the appropriate alternative:
+(node:5761) [DEP0005] DeprecationWarning: The Buffer() and new Buffer() constructors are not recommended for use due to security and usability concerns. Please use the new Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() construction methods instead.
+
+With Node 10, the use of Buffer constructor will now generate a runtime warningi by default. 
+
+The applications should still run the same, but the runtime warning could be confusing, or disruptive during testing. 
+
+I created new copies of the example files that used the Buffer constructor and replaced it with the appropriate alternative:
 
 Buffer.alloc()
 Buffer.from()
