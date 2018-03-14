@@ -1,11 +1,14 @@
 var vm = require('vm');
-var fs = require('fs');
+var util = require('util');
 
-global.count1 = 100;
-var count2 = 100;
+var sandbox = {
+     count1 : 1
+    };
 
-var script = new vm.Script(fs.readFileSync('script.js','utf8'));
-script.runInThisContext({filename: 'count.vm'});
+vm.createContext(sandbox);
+if (vm.isContext(sandbox)) console.log('contextualized');
 
-console.log(count1);
-console.log(count2);
+vm.runInContext('count1++; counter=true;',sandbox,
+                {filename: 'context.vm'});
+
+console.log(util.inspect(sandbox));

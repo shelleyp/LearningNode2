@@ -1,22 +1,14 @@
-var inputChecker = require('inputcheck').InputChecker;
+var vm = require('vm');
 
-// testing new object and event handling
-var ic = new inputChecker('Shelley','output');
+global.count1 = 100;
+var count2 = 100;
 
-ic.on('write', function(data) {
-   this.writeStream.write(data, 'utf8');
-});
+var txt = 'if (count1 === undefined) var count1 = 0; count1++;' +
+          'if (count2 === undefined) var count2 = 0; count2++;' +
+          'console.log(count1); console.log(count2);';
 
-ic.addListener('echo', function( data) {
-   console.log(this.name + ' wrote ' + data);
-});
+var script = new vm.Script(txt);
+script.runInThisContext({filename: 'count.vm'});
 
-ic.on('end', function() {
-   process.exit();
-});
-
-process.stdin.resume();
-process.stdin.setEncoding('utf8');
-process.stdin.on('data', function(input) {
-    ic.check(input);
-});
+console.log(count1);
+console.log(count2);

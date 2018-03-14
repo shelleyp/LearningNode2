@@ -1,29 +1,22 @@
-var fs = require('fs'),
-    async = require('async');
+var inputChecker = require('./inputcheck').InputChecker;
 
-async.parallel({
-   data1 : function (callback) {
-      fs.readFile('./data/fruit1.txt', 'utf8', function(err, data){
-           callback(err,data);
-       });
-   },
-   data2 : function (callback) {
-      fs.readFile('./data/fruit2.txt', 'utf8', function(err, data){
-           callback(err,data);
-       });
-   },
-   data3 : function readData3(callback) {
-      fs.readFile('./data/fruit3.txt', 'utf8', function(err, data){
-           callback(err,data);
-       });
-   },
+// testing new object and event handling
+var ic = new inputChecker('Shelley','output');
 
-
-}, function (err, result) {
-      if (err) {
-         console.log(err.message);
-      } else {
-         console.log(result);
-      }
+ic.on('write', function(data) {
+   this.writeStream.write(data, 'utf8');
 });
 
+ic.addListener('echo', function( data) {
+   console.log(this.name + ' wrote ' + data);
+});
+
+ic.on('end', function() {
+   process.exit();
+});
+
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function(input) {
+    ic.check(input);
+});
