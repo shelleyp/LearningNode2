@@ -16,4 +16,3 @@ Chapter 4 (chap4)
 
 Chapter 5 (chap5)
 
-If you spot a problem you can contact me, or made the correction in the file and submit the file commit into the master.
