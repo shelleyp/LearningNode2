@@ -4,7 +4,7 @@ var http = require('http'),
     mime = require('mime'),
     path = require('path');
 
-var base = '/home/examples/public_html';
+var base = __dirname;
 
 http.createServer(function (req, res) {
 
@@ -18,7 +18,7 @@ http.createServer(function (req, res) {
         res.end();
       } else if (stats.isFile()) {
          // content type
-         var type = mime.lookup(pathname);
+         var type = mime.getType(pathname);
          console.log(type);
          res.setHeader('Content-Type', type);
 

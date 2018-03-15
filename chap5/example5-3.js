@@ -1,6 +1,6 @@
 var http = require('http'),
     fs   = require('fs'),
-    base = '/home/examples/public_html';
+    base = __dirname;
 
 http.createServer(function (req, res) {
 
