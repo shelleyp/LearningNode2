@@ -1,31 +1,9 @@
-var util = require('util');
+var repl = require('repl');
+var context = repl.start({prompt: '>> ',
+                          ignoreUndefined: true,
+                          replMode: repl.REPL_MODE_STRICT}).context;
 
-var today = new Date();
-
-var test = {
-   a : {
-       b : {
-          c : {
-            d : 'test'
-          },
-          c2 : 3.50
-       },
-       b2 : true
-   },
-   a2: today
-}
-
-util.inspect.styles.boolean = 'blue';
-
-// output with util.inspect direct formatting
-var str = util.inspect(test, {depth: 4, colors: true });
-console.log(str);
-
-// output using console.dir and options
-console.dir(test, {depth: 4, colors: true});
-
-// output using basic console.log
-console.log(test);
-
-// and JSON stringify
-console.log(JSON.stringify(test, null, 4));
+// preload in modules
+context.request = require('request');
+context.underscore = require('underscore');
+context.q = require('q');
