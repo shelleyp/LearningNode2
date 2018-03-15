@@ -10,4 +10,10 @@ Chapter 1 (chap1)
 
 Chapter 2 (chap2)
 
+Chapter 3 (chap3)
+
+Chapter 4 (chap4)
+
+Chapter 5 (chap5)
+
 If you spot a problem you can contact me, or made the correction in the file and submit the file commit into the master.
