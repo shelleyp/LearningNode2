@@ -1,1 +1,1 @@
-Now let's pull this altogether, and read and write with a stream.
+Now let's pull this all together, and read and write with a stream.

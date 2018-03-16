@@ -1,37 +1,35 @@
 var http = require('http');
-var fs = require('fs');
 var zlib = require('zlib');
+var fs = require('fs');
 
-var gzip = zlib.createGzip();
+var server = http.createServer().listen(8124);
 
-var options = {
-  hostname: 'localhost',
-  port: 8124,
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/javascript',
-    'Content-Encoding': 'gzip,deflate'
-  }
-};
+server.on('request', function(request,response) {
 
-var req = http.request(options, function(res) {
-  res.setEncoding('utf8');
-  var data = '';
-  res.on('data', function (chunk) {
-      data+=chunk;
-  });
+   if (request.method == 'POST') {
+      var chunks = [];
 
+      request.on('data', function(chunk) {
+         chunks.push(chunk);
+      });
 
-  res.on('end', function() {
-    console.log(data)
-  })
+      request.on('end', function() {
+         var buf = Buffer.concat(chunks);
+         zlib.unzip(buf, function(err, result) {
+            if (err) {
+               response.writeHead(500);
+               response.end();
+               return console.log('error ' + err);
+            }
+            var timestamp = Date.now();
+            var filename = './done' + timestamp + '.png';
+            fs.createWriteStream(filename).write(result);
+         });
 
+         response.writeHead(200, {'Content-Type': 'text/plain'});
+         response.end('Received and undecompressed file\n');
+      });
+   }
 });
 
-req.on('error', function(e) {
-  console.log('problem with request: ' + e.message);
-});
-
-// stream gzipped file to server
-var readable = fs.createReadStream('./test.png');
-readable.pipe(gzip).pipe(req);
+console.log('server listening on 8214');
