@@ -2,27 +2,27 @@ var mysql = require('mysql'),
     crypto = require('crypto');
 
 var connection = mysql.createConnection({
-   host: 'localhost',
    user: 'username',
    password: 'userpass'
   });
-
-connection.connect();
 
 connection.query('USE nodedatabase');
 
 var username = process.argv[2];
 var password = process.argv[3];
 
-var salt = Math.round((Date.now() * Math.random())) + '';
+connection.query('SELECT passwordhash, salt FROM user WHERE username = ?',
+   [username], function(err, result, fields) {
+   if (err) return console.error(err);
 
-var hashpassword = crypto.createHash('sha512')
-                   .update(salt + password, 'utf8')
-                   .digest('hex');
-// create user record
-connection.query('INSERT INTO user ' +
-   'SET username = ?, passwordhash = ?, salt = ?',
-   [username, hashpassword, salt], function(err, result) {
-      if (err) console.error(err);
-      connection.end();
+   var newhash = crypto.createHash('sha512')
+                 .update(result[0].salt + password, 'utf8')
+                 .digest('hex');
+
+   if (result[0].passwordhash === newhash) {
+      console.log("OK, you're cool");
+   } else {
+      console.log("Your password is wrong. Try again.");
+   }
+   connection.end();
 });

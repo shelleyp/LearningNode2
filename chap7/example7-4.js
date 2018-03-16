@@ -3,7 +3,7 @@ var client = new net.Socket();
 client.setEncoding('utf8');
 
 // connect to server
-client.connect ('/home/somepath/nodesocket', function () {
+client.connect ('/tmp/learning.sock', function () {
    console.log('connected to server');
    client.write('Who needs a browser to communicate?');
 });
@@ -23,3 +23,6 @@ client.on('close',function() {
    console.log('connection is closed');
 });
 
+client.on('error', function(e) {
+   console.error(e);
+});

@@ -22,3 +22,7 @@ client.on('data',function(data) {
 client.on('close',function() { 
    console.log('connection is closed'); 
 });
+
+client.on('error', function(e) {
+   console.error(e);
+});

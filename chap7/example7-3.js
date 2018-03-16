@@ -1,7 +1,7 @@
 var net = require('net');
 var fs = require('fs');
 
-const unixsocket = '/home/somepath/nodesocket';
+const unixsocket = '/tmp/learning.sock';
 
 var server = net.createServer(function(conn) {
    console.log('connected');
