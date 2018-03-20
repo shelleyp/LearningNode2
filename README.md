@@ -4,15 +4,12 @@ Subdirectories include example code for the book, "Learning Node, 2nd edition" b
 
 Starting in March, examples are being modified/updated/added to account for the Node v4 end of life (EOL), as well as the release of Node v10. 
 
-As each chapter's examples are updated, the chapter is added to the list:
+All chapters have been reviewed with new or modified examples, as well as per chapter README files with updated information (March 20).
 
-Chapter 1 (chap1)
+Thankfully, Node and the modules I covered in the book are very stable, and there are very few changes. The biggest change is the runtime deprecation of the Buffer constructor, covered in the chap2 README file.
 
-Chapter 2 (chap2)
+The book, with these examples, are still as viable for Node v10.0 as they were for Node v4.0. 
 
-Chapter 3 (chap3)
+Happy coding
 
-Chapter 4 (chap4)
-
-Chapter 5 (chap5)
-
+Shelley 
