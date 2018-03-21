@@ -8,7 +8,7 @@ I updated example5-3.js and example5-4.js to use  _base = __dirname_ to set path
 
 In addition, I updated example5-4.js to account for the breaking change in the MIME module. mime.lookup() is now mime.getType().
 
-The book does not contain examples for Node's support for HTTPS, or the new experimental support for HTTP/2.  
+The book does not contain examples of the new experimental support for HTTP/2.  
 
 I created a new example, _newhttps.js_, that creates a simple HTTPS server that responds with Hello World. It runs off of port 8000, and actually worked once I remembered to allow access to this port through my firewall. It's based on a certificate obtained from Let's Encrypt, which provides no cost digital certificates. You'll need to install a certificate and then adjust the example to fit your own environment. 
 
