@@ -12,7 +12,7 @@ Angular is Google's baby, which means support from a major tech company. However
 
 Vue is a more independent open source development effort, started by a former Google engineer, Evan You. If buying into the biggies isn't for you, you might check out Vue.js. 
 
-One thing that has remained stable since this book was written was Express. The code in the book is still viable and the only change is that the Express Generator creates a package.json.lock file now, rather than a package.json file. 
+One thing that has remained stable since this book was written was Express. The code in the book is still viable and the only change is that npm creates a package.json.lock file now. 
 
 Thankfully, database API support has also remained relatively stable. 
 
